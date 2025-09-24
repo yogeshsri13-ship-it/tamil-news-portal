@@ -2,22 +2,6 @@ import { getClient } from '../../../lib/sanity.client'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import { urlForImage } from '../../../lib/sanity.image'
-import { Metadata } from 'next'
-import { ArticlePageProps } from '../../../types/page'
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = await getArticle(params.slug)
-  
-  if (!article) {
-    return {
-      title: 'Article Not Found',
-    }
-  }
-
-  return {
-    title: article.titleTamil,
-  }
-}
 
 async function getArticle(slug: string) {
   const client = getClient()
@@ -35,7 +19,13 @@ async function getArticle(slug: string) {
   `, { slug })
 }
 
-export default async function ArticlePage({ params }: ArticlePageProps) {
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
+export default async function Page({ params }: Props) {
   const article = await getArticle(params.slug)
 
   if (!article) {
