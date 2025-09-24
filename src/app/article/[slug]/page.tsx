@@ -19,7 +19,13 @@ async function getArticle(slug: string) {
   `, { slug })
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
+export default async function ArticlePage({ params }: Props) {
   const article = await getArticle(params.slug)
 
   if (!article) {
