@@ -2,6 +2,7 @@ import { getClient } from '../../../lib/sanity.client'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import { urlForImage } from '../../../lib/sanity.image'
+import { Article, ArticlePageParams } from '../../../types/article'
 
 // This function gets called at build time
 export async function generateStaticParams() {
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
   }))
 }
 
-async function getArticle(slug: string) {
+async function getArticle(slug: string): Promise<Article | null> {
   const client = getClient()
   
   return await client.fetch(`
@@ -31,7 +32,7 @@ async function getArticle(slug: string) {
   `, { slug })
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+async function ArticlePage({ params }: ArticlePageParams) {
   const article = await getArticle(params.slug)
 
   if (!article) {
@@ -80,3 +81,5 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     </article>
   )
 }
+
+export default ArticlePage
