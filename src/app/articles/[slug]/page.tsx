@@ -3,6 +3,18 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import { urlForImage } from '../../../lib/sanity.image'
 
+// This function gets called at build time
+export async function generateStaticParams() {
+  const client = getClient()
+  const articles = await client.fetch(`*[_type == "article"] {
+    "slug": slug.current
+  }`)
+  
+  return articles.map((article: { slug: string }) => ({
+    slug: article.slug,
+  }))
+}
+
 async function getArticle(slug: string) {
   const client = getClient()
   
@@ -19,13 +31,7 @@ async function getArticle(slug: string) {
   `, { slug })
 }
 
-type Props = {
-  params: {
-    slug: string
-  }
-}
-
-export default async function Page({ params }: Props) {
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug)
 
   if (!article) {
