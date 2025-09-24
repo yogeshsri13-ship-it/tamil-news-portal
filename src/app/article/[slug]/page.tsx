@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import { urlForImage } from '../../../lib/sanity.image'
 import { Metadata } from 'next'
+import { ArticlePageProps } from '../../../types/page'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const article = await getArticle(params.slug)
@@ -34,11 +35,7 @@ async function getArticle(slug: string) {
   `, { slug })
 }
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function ArticlePage({ params }: ArticlePageProps) {
   const article = await getArticle(params.slug)
 
   if (!article) {
