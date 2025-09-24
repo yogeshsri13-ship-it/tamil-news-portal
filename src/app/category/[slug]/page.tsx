@@ -28,7 +28,7 @@ async function getCategory(slug: string) {
   `, { slug })
 }
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: any) {
   const [articles, category] = await Promise.all([
     getCategoryArticles(params.slug),
     getCategory(params.slug)
