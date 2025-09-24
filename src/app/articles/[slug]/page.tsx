@@ -5,6 +5,8 @@ import { urlForImage } from '../../../lib/sanity.image'
 import { Article, ArticlePageParams } from '../../../types/article'
 import { PortableText } from '@portabletext/react'
 
+export const dynamic = 'force-dynamic'
+
 // This function gets called at build time
 export async function generateStaticParams() {
   const client = getClient()
