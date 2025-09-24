@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: var(--font-tamil), system-ui, -apple-system, sans-serif;
+}
+
+/* Tamil text specific styles */
+.tamil-text {
+  font-family: var(--font-tamil), system-ui, -apple-system, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+/* Article card styles */
+.article-card {
+  @apply border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-200;
+}
+
+.article-title {
+  @apply text-xl font-semibold mb-2 line-clamp-2;
+}
+
+.article-meta {
+  @apply text-sm text-gray-600 mb-3;
+}
+
+.article-excerpt {
+  @apply text-gray-700 line-clamp-3;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "tamil-news-portal",
+  "projectId": "your-project-id",
+  "dataset": "production",
+  "plugins": [
+    "@sanity/vision",
+    "@sanity/desk-tool"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    }
+  ]
+}
