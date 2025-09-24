@@ -32,7 +32,7 @@ async function getArticle(slug: string): Promise<Article | null> {
   `, { slug })
 }
 
-async function ArticlePage({ params }: ArticlePageParams) {
+async function ArticlePage({ params }: any) {
   const article = await getArticle(params.slug)
 
   if (!article) {
