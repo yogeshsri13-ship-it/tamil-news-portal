@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import { urlForImage } from '../../../lib/sanity.image'
 import { Article, ArticlePageParams } from '../../../types/article'
+import { PortableText } from '@portabletext/react'
 
 // This function gets called at build time
 export async function generateStaticParams() {
@@ -76,7 +77,7 @@ async function ArticlePage({ params }: any) {
       )}
 
       <div className="prose prose-lg max-w-none tamil-text">
-        {article.content}
+        <PortableText value={article.content} />
       </div>
     </article>
   )
